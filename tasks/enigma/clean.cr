@@ -5,8 +5,8 @@ class Enigma::Clean < LuckyCli::Task
   def call
     # pp! ARGV.inspect
     # puts "ENIGMA encrypt file: #{ARGV.first}"
-    filename = ARGV.first
-    contents = File.read(filename)
+    puts "Key is: #{key}"
+    contents = STDIN.gets_to_end
     puts encrypt(contents)
   end
 

@@ -6,7 +6,9 @@ class Enigma::Setup < LuckyCli::Task
   # TODO: Generate a super secret key
   def call(key : String = generate_key, io : IO = STDOUT)
     puts "Setting up encrypted configuration with Engima"
-    run "git config --local #{GIT_CONFIG_PATH_TO_KEY} #{key}", io
+    if key.blank?
+      run "git config --local #{GIT_CONFIG_PATH_TO_KEY} #{key}", io
+    end
     # TODO Only add top line
     # config/encrypted/* filter=crypt diff=crypt
     File.write ".gitattributes", <<-TEXT
@@ -27,8 +29,8 @@ class Enigma::Setup < LuckyCli::Task
     #   cachetextconv = true
     #   binary = true
     run %(git config filter.enigma.clean 'lucky enigma.clean %f')
-    run %(git config filter.enigma.smudge 'lucky enigma.smudge %f')
-    run %(git config diff.enigma.textconv 'lucky enigma.textconv %f')
+    run %(git config filter.enigma.smudge 'lucky enigma.smudge')
+    run %(git config diff.enigma.textconv 'lucky enigma.textconv')
     run %(git config filter.enigma.required 'true')
     run %(git config diff.enigma.binary 'true')
     # https://git-scm.com/docs/gitattributes
@@ -45,6 +47,12 @@ class Enigma::Setup < LuckyCli::Task
 
   private def run(command, io = STDOUT)
     Process.run(command, shell: true, output: io, error: STDERR)
+  end
+
+  @_key : String?
+
+  private def key : String
+    @_key ||= `git config #{Enigma::Setup::GIT_CONFIG_PATH_TO_KEY}`
   end
 
   private def generate_key : String
