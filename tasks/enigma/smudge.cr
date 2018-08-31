@@ -6,7 +6,7 @@ class Enigma::Smudge < LuckyCli::Task
     # puts "ENIGMA smudge"
     contents = STDIN.to_s
     encryptor = Lucky::MessageEncryptor.new(secret: key)
-    encryptor.verify_and_decrypt(contents)
+    p encryptor.verify_and_decrypt(contents)
   end
 
   @_key : String?
