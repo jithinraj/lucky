@@ -7,7 +7,7 @@ class Enigma::Clean < LuckyCli::Task
     # puts "ENIGMA encrypt file: #{ARGV.first}"
     filename = ARGV.first
     contents = File.read(filename)
-    p encrypt(contents)
+    puts encrypt(contents)
   end
 
   private def encrypt(contents : String) : String
