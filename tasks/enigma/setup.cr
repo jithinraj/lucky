@@ -30,7 +30,7 @@ class Enigma::Setup < LuckyCli::Task
     run %(git config diff.enigma.cachetextconv 'true')
   end
 
-  private def run(command, io)
+  private def run(command, io = STDOUT)
     Process.run(command, shell: true, output: io, error: STDERR)
   end
 
