@@ -1,8 +1,8 @@
 class Enigma::Clean < LuckyCli::Task
-  banner "Task used for clean (Fill in decrypt/encrypt) later"
+  banner "Task used for git clean (file decryption)"
 
   def call
-    puts "ENIGMA CLEAN"
+    puts "ENIGMA decrypt file: #{ARGV.first}"
   end
 
   private def run(command, io)
