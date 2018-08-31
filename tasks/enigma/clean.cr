@@ -1,5 +1,6 @@
+# https://www.juandebravo.com/2017/12/02/git-filter-smudge-and-clean
 class Enigma::Clean < LuckyCli::Task
-  banner "Task used for git clean (file decryption)"
+  banner "Task used for git clean on checkin (file decryption)"
 
   def call
     puts "ENIGMA decrypt file: #{ARGV.first}"

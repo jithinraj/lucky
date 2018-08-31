@@ -1,1 +1,1 @@
-ENIGMA CLEAN
+ENIGMA decrypt file: config/encrypted/encrypt-me.cr

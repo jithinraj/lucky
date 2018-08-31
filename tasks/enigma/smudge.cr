@@ -1,5 +1,5 @@
 class Enigma::Smudge < LuckyCli::Task
-  banner "Task used for smudge (Fill in decrypt/encrypt) later"
+  banner "Task used for git smudge on checkout (decrypt)"
 
   def call
     puts "ENIGMA smudge"
