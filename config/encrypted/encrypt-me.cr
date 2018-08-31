@@ -1,2 +1,1 @@
-ARGV.inspect # => "[\"config/encrypted/encrypt-me.cr\"]"
-ENIGMA encrypt file: config/encrypted/encrypt-me.cr
+"dOfGwmhLpMGKwpSZUdQaSW46gngbPTxPhPTNQmAdwATaNXOAcc4IhvnEXG8/+3beSO377twLoc/mzhsdwKkByQ==--d0MKaLrL+uDY+RPGl3MG+SulmCs="
