@@ -28,7 +28,7 @@ class Enigma::Setup < LuckyCli::Task
     run %(git config filter.enigma.smudge 'lucky enigma.smudge')
     run %(git config diff.enigma.textconv 'lucky enigma.textconv')
     run %(git config filter.enigma.required 'true')
-    run %(git config diff.enigma.cachetextconv 'true')
+    # run %(git config diff.enigma.cachetextconv 'true')
   end
 
   private def run(command, io = STDOUT)
