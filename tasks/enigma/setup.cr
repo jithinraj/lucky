@@ -1,10 +1,11 @@
 class Enigma::Setup < LuckyCli::Task
+  GIT_CONFIG_PATH_TO_KEY = "lucky.enigma.key"
   banner "Setup encrypted configuration with Engima"
 
   # TODO: Generate a super secret key
   def call(key : String = generate_key, io : IO = STDOUT)
     puts "Setting up encrypted configuration with Engima"
-    run "git config --local lucky.enigma.key #{key}", io
+    run "git config --local #{GIT_CONFIG_PATH_TO_KEY} #{key}", io
     # TODO Only add top line
     # config/encrypted/* filter=crypt diff=crypt
     File.write ".gitattributes", <<-TEXT
