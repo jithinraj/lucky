@@ -2,14 +2,19 @@ class Enigma::Textconv < LuckyCli::Task
   banner "Task used for textconv"
 
   def call
-    contents = STDIN.to_s
+    puts "TEXTCONB"
+    contents = STDIN.gets_to_end
     puts "CONTENTS"
     puts contents
+    filename = ARGV.first?
     puts "FILENAME"
     puts filename
-    contents = File.read(filename)
+    # contents = File.read(filename)
     encryptor = Lucky::MessageEncryptor.new(secret: key)
     puts encryptor.verify_and_decrypt(contents).to_s
+  rescue e
+    puts e.inspect
+    exit 1
   end
 
   @_key : String?
