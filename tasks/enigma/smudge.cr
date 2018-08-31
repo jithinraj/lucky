@@ -5,6 +5,8 @@ class Enigma::Smudge < LuckyCli::Task
     # pp! ARGV.inspect
     # puts "ENIGMA smudge"
     contents = STDIN.to_s
+    puts "CONTENTS"
+    puts contents
     encryptor = Lucky::MessageEncryptor.new(secret: key)
     puts encryptor.verify_and_decrypt(contents).to_s
   end
