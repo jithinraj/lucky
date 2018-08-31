@@ -13,9 +13,23 @@ class Enigma::Setup < LuckyCli::Task
 
     # Link to CLI
     # https://stackoverflow.com/questions/35305503/adding-filter-entries-to-the-git-config-file
-    # git config filter.crypt.clean '"$(git rev-parse --git-common-dir)"/crypt/clean %f'
-    # git config filter.crypt.smudge '"$(git rev-parse --git-common-dir)"/crypt/smudge'
-    # git config diff.crypt.textconv '"$(git rev-parse --git-common-dir)"/crypt/textconv'
+
+    # From transcrypt:
+    # [filter "crypt"]
+    #   clean = \"$(git rev-parse --git-common-dir)\"/crypt/clean %f
+    #   smudge = \"$(git rev-parse --git-common-dir)\"/crypt/smudge
+    #   required = true
+    # [diff "crypt"]
+    #   textconv = \"$(git rev-parse --git-common-dir)\"/crypt/textconv
+    #   cachetextconv = true
+    #   binary = true
+
+    # git config filter.enigma.clean '"$(git rev-parse --git-common-dir)"/crypt/clean %f'
+    # git config filter.enigma.smudge '"$(git rev-parse --git-common-dir)"/crypt/smudge'
+    # git config diff.enigma.textconv '"$(git rev-parse --git-common-dir)"/crypt/textconv'
+    # git config filter.enigma.required 'true'
+    # git config diff.enigma.cachetextconv 'true'
+    # git config diff.enigma.binary 'true'
   end
 
   private def run(command, io)
