@@ -2,9 +2,8 @@ class Enigma::Textconv < LuckyCli::Task
   banner "Task used for textconv"
 
   def call
-    # pp! ARGV.inspect
-    # puts "ENIGMA smudge"
-    contents = STDIN.gets_to_end.chomp
+    raise "TEXTCONV"
+    contents = STDIN.gets.to_s.chomp
     encryptor = Lucky::MessageEncryptor.new(secret: key)
     puts String.new(encryptor.verify_and_decrypt(contents))
   end
