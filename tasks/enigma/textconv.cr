@@ -2,10 +2,11 @@ class Enigma::Textconv < LuckyCli::Task
   banner "Task used for textconv"
 
   def call
-    raise "TEXTCONV"
-    contents = STDIN.gets.to_s.chomp
-    encryptor = Lucky::MessageEncryptor.new(secret: key)
-    puts String.new(encryptor.verify_and_decrypt(contents))
+    # raise "TEXTCONV"
+    # contents = STDIN.gets.to_s.chomp
+    # encryptor = Lucky::MessageEncryptor.new(secret: key)
+    # puts String.new(encryptor.verify_and_decrypt(contents))
+    puts "Can't diff this file"
   end
 
   @_key : String?
