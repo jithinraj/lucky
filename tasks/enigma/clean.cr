@@ -5,18 +5,9 @@ class Enigma::Clean < LuckyCli::Task
   def call
     # pp! ARGV.inspect
     # puts "ENIGMA encrypt file: #{ARGV.first}"
-    puts "ENIGMA ENCRYPT CLEAN"
-    contents = STDIN.to_s
-    puts "CONTENTS"
-    puts contents
     filename = ARGV.first
-    puts "FILENAME"
-    puts filename
     contents = File.read(filename)
     puts encrypt(contents)
-  rescue e
-    puts e.inspect
-    exit 1
   end
 
   private def encrypt(contents : String) : String
@@ -28,9 +19,5 @@ class Enigma::Clean < LuckyCli::Task
 
   private def key : String
     @_key ||= `git config #{Enigma::Setup::GIT_CONFIG_PATH_TO_KEY}`
-  end
-
-  private def run(command, io)
-    Process.run(command, shell: true, output: io, error: STDERR)
   end
 end

@@ -1,3 +1,4 @@
+# https://git-scm.com/docs/gitattributes
 class Enigma::Setup < LuckyCli::Task
   GIT_CONFIG_PATH_TO_KEY = "lucky.enigma.key"
   banner "Setup encrypted configuration with Engima"
@@ -26,10 +27,19 @@ class Enigma::Setup < LuckyCli::Task
     #   cachetextconv = true
     #   binary = true
     run %(git config filter.enigma.clean 'lucky enigma.clean %f')
-    run %(git config filter.enigma.smudge 'lucky enigma.smudge')
-    run %(git config diff.enigma.textconv 'lucky enigma.textconv')
+    run %(git config filter.enigma.smudge 'lucky enigma.smudge %f')
+    run %(git config diff.enigma.textconv 'lucky enigma.textconv %f')
     run %(git config filter.enigma.required 'true')
     run %(git config diff.enigma.binary 'true')
+    # https://git-scm.com/docs/gitattributes
+    #
+    # To prevent these unnecessary merge conflicts, Git can be told to run a
+    # virtual check-out and check-in of all three stages of a file when
+    # resolving a three-way merge by setting the merge.renormalize
+    # configuration variable. This prevents changes caused by check-in
+    # conversion from causing spurious merge conflicts when a converted file is
+    # merged with an unconverted file.
+    run %(git config merge.renormalize 'true')
     # run %(git config diff.enigma.cachetextconv 'true')
   end
 
