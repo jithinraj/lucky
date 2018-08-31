@@ -23,13 +23,11 @@ class Enigma::Setup < LuckyCli::Task
     #   textconv = \"$(git rev-parse --git-common-dir)\"/crypt/textconv
     #   cachetextconv = true
     #   binary = true
-
-    # git config filter.enigma.clean '"$(git rev-parse --git-common-dir)"/crypt/clean %f'
-    # git config filter.enigma.smudge '"$(git rev-parse --git-common-dir)"/crypt/smudge'
-    # git config diff.enigma.textconv '"$(git rev-parse --git-common-dir)"/crypt/textconv'
-    # git config filter.enigma.required 'true'
-    # git config diff.enigma.cachetextconv 'true'
-    # git config diff.enigma.binary 'true'
+    run %(git config filter.enigma.clean 'lucky enigma.clean %f')
+    run %(git config filter.enigma.smudge 'lucky enigma.smudge')
+    run %(git config diff.enigma.textconv 'lucky enigma.textconv')
+    run %(git config filter.enigma.required 'true')
+    run %(git config diff.enigma.cachetextconv 'true')
   end
 
   private def run(command, io)
