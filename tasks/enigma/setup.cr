@@ -9,6 +9,7 @@ class Enigma::Setup < LuckyCli::Task
     # config/encrypted/* filter=crypt diff=crypt
     File.write ".gitattributes", <<-TEXT
     config/encrypted/* filter=enigma diff=enigma
+
     TEXT
 
     # Link to CLI

@@ -3,7 +3,8 @@ class Enigma::Clean < LuckyCli::Task
   banner "Task used for git clean on checkin (file encryption)"
 
   def call
-    puts "ENIGMA encryption file: #{ARGV.first}"
+    pp! ARGV.inspect
+    puts "ENIGMA encrypt file: #{ARGV.first}"
   end
 
   private def run(command, io)
