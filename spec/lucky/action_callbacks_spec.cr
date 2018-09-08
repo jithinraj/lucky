@@ -143,7 +143,7 @@ describe Lucky::Action do
       response.body.should eq ""
       response.context.response.status_code.should eq 302
       response.context.response.headers["Location"].should eq "/redirected_in_before"
-      response.context.better_cookies.get?("before").should be_nil
+      response.context.better_cookies.get?("before").value.should be_nil
     end
 
     it "halts after callbacks if a Lucky::Response is returned" do
@@ -152,7 +152,7 @@ describe Lucky::Action do
       response.body.should eq ""
       response.context.response.status_code.should eq 302
       response.context.response.headers["Location"].should eq "/redirected_in_after"
-      response.context.better_cookies.get?("after").should be_nil
+      response.context.better_cookies.get?("after").value.should be_nil
     end
 
     it "renders the callbacks in the order they were defined" do
