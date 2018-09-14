@@ -5,9 +5,7 @@ class Enigma::Uninstall < LuckyCli::Task
   def call(key : String = generate_key, io : IO = STDOUT)
     puts "Uninstalling enigma"
 
-    # File.write ".gitattributes", <<-TEXT
-    # config/encrypted/* filter=enigma diff=enigma
-    # TEXT
+    # TODO remove lines from .gitattributes that used enigma
 
     ([Enigma::Setup::GIT_CONFIG_PATH_TO_KEY] + Enigma::Setup::GIT_CONFIG.keys).each do |key|
       run %(git config --unset #{key})
