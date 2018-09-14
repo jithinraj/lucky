@@ -19,25 +19,33 @@ class Enigma::Setup < LuckyCli::Task
   banner "Setup encrypted configuration with Engima"
 
   def call(key : String = generate_key, io : IO = STDOUT)
-    puts "Setting up encrypted configuration with Engima"
-    if key.blank?
+    if not_installed_yet?
       run "git config --local #{GIT_CONFIG_PATH_TO_KEY} #{key}", io
-    end
 
-    # TODO Only add top line
-    # config/encrypted/* filter=crypt diff=crypt
-    File.write ".gitattributes", <<-TEXT
-    config/encrypted/* filter=enigma diff=enigma
+      # TODO Only add top line
+      # config/encrypted/* filter=crypt diff=crypt
+      File.write ".gitattributes", <<-TEXT
+      config/encrypted/* filter=enigma diff=enigma
 
-    TEXT
+      TEXT
 
-    GIT_CONFIG.each do |key, value|
-      run %(git config #{key} '#{value}')
+      GIT_CONFIG.each do |key, value|
+        run %(git config #{key} '#{value}')
+      end
+
+      puts "Enigma is set up."
+    else
+      puts "Enigma is already set up."
     end
   end
 
   private def run(command, io = STDOUT)
     Process.run(command, shell: true, output: io, error: STDERR)
+  end
+
+  private def not_installed_yet? : Bool
+    key_from_git = `git config #{GIT_CONFIG_PATH_TO_KEY}`
+    key_from_git.blank?
   end
 
   @_key : String?

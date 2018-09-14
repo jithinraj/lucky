@@ -1,8 +1,7 @@
 class Enigma::Uninstall < LuckyCli::Task
   banner "Uninstall Enigma"
 
-  # TODO: Generate a super secret key
-  def call(key : String = generate_key, io : IO = STDOUT)
+  def call
     puts "Uninstalling enigma"
 
     # TODO remove lines from .gitattributes that used enigma
