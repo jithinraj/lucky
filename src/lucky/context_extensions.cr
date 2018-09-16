@@ -1,9 +1,5 @@
-require "./session/**"
-
 class HTTP::Server::Context
   DEBUG_COLOR = :green
-  setter session : Lucky::Session::AbstractStore?
-  setter cookies : Lucky::Cookies::Store?
   setter better_cookies : Lucky::CookieJar?
   setter better_session : Lucky::SessionCookie?
   setter flash : Lucky::FlashStore?
